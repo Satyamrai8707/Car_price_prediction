@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Car Price Prediction</h1>
+
+        <form action="/predict" method="POST">
+            <label for="brand">Brand (Choose Brand ID):</label>
+            <select name="brand" required>
+                <option value="">Select a Brand</option>
+                {% for brand in brands %}
+                    <option value="{{ brand }}">{{ brand }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="model">Model (Choose Model ID):</label>
+            <select name="model" required>
+                <option value="">Select a Model</option>
+                {% for model in models %}
+                    <option value="{{ model }}">{{ model }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="year">Year:</label>
+            <select name="year" required>
+                <option value="">Select Year</option>
+                {% for year in years %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="mileage">Mileage (in km):</label>
+            <select name="mileage" required>
+                <option value="">Select Mileage</option>
+                {% for mileage in mileages %}
+                    <option value="{{ mileage }}">{{ mileage }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="engine">Engine Size (L):</label>
+            <select name="engine" required>
+                <option value="">Select Engine Size</option>
+                {% for engine in engine_sizes %}
+                    <option value="{{ engine }}">{{ engine }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="power">Power (in HP):</label>
+            <select name="power" required>
+                <option value="">Select Power</option>
+                {% for power in powers %}
+                    <option value="{{ power }}">{{ power }} HP</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Predict Price</button>
+        </form>
+
+        {% if predicted_price %}
+            <h3>Predicted Price: ₹{{ predicted_price }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
